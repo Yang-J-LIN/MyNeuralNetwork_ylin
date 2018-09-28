@@ -11,13 +11,22 @@ def calc_activation(Z, func):
     else:
         return relu(Z)
 
+
+def calc_gradient(Z, func):
+    if func == 'sigmoid':
+        return d_sigmoid(Z)
+    else:
+        return d_relu(Z)
+
+# ------------------ sigmoid function ------------------ #
 def sigmoid(Z):
     return 1 / (1 + np.e ** (-Z))
 
 
 def d_sigmoid(Z):
-    return sigmoid(Z)(1 - sigmoid(Z))
+    return sigmoid(Z) * (1 - sigmoid(Z))
 
+# -------------------- relu function -------------------- #
 
 def relu(Z):
     return ((Z > 0) * Z)
